@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Transactions"
+        android:icon="@drawable/transaction"
+        android:title="Trans." />
+    <item
+        android:id="@+id/Statistics"
+        android:icon="@drawable/analytics"
+        android:title="Stats" />
+    <item
+        android:id="@+id/Acounts"
+        android:icon="@drawable/bank"
+        android:title="Accounts" />
+    <item
+        android:id="@+id/More"
+        android:icon="@drawable/more"
+        android:title="More" />
+</menu>
