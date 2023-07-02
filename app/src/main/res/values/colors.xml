@@ -5,6 +5,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#DA4A1C</color>
     <color name="orangeDark">#BE3003</color>
+    <color name="greenColor">#A84CAF50</color>
+    <color name="redColor">#9AF44336</color>
+    <color name="textColor">#ACA8A7</color>
 
 
 </resources>
