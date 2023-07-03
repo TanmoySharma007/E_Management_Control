@@ -1,17 +1,23 @@
 package com.example.e_management_manager;
 
 import android.app.DatePickerDialog;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 
 import com.example.e_management_manager.databinding.FragmentAddTransactionBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,9 +64,26 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
 
         });
             binding.date.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
-                public void onClick(View v) {
+                public void onClick(View view) {
                     DatePickerDialog datePickerDialog = new DatePickerDialog(getContext());
+
+                    datePickerDialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
+                            calendar.set(Calendar.MONTH, datePicker.getMonth());
+                            calendar.set(Calendar.YEAR, datePicker.getYear());
+
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");
+                            String dateToShow = dateFormat.format(calendar.getTime());
+
+                            binding.date.setText(dateToShow);
+                        }
+                    });
                     datePickerDialog.show();
                 }
             });
