@@ -50,8 +50,8 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
 
             binding.incomeBtn.setBackground(getContext().getDrawable(R.drawable.income_selector));
             binding.expenseBtn.setBackground(getContext().getDrawable(R.drawable.default_selector));
-            binding.expenseBtn.setBackground(getContext().getDrawable(R.drawable.default_selector));
-            binding.incomeBtn.setBackground(getContext().getDrawable(R.drawable.income_selector));
+            binding.expenseBtn.setTextColor(getContext().getColor(R.color.textColor));
+            binding.incomeBtn.setTextColor(getContext().getColor(R.color.greenColor));
 
         });
 
@@ -59,8 +59,8 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
 
             binding.incomeBtn.setBackground(getContext().getDrawable(R.drawable.default_selector));
             binding.expenseBtn.setBackground(getContext().getDrawable(R.drawable.expense_selector));
-            binding.incomeBtn.setBackground(getContext().getDrawable(R.drawable.default_selector));
-            binding.expenseBtn.setBackground(getContext().getDrawable(R.drawable.expense_selector));
+            binding.incomeBtn.setTextColor(getContext().getColor(R.color.textColor));
+            binding.expenseBtn.setTextColor(getContext().getColor(R.color.redColor));
 
         });
             binding.date.setOnClickListener(new View.OnClickListener() {
