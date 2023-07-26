@@ -1,16 +1,13 @@
-package com.example.e_management_manager;
+package com.example.e_management_manager.views.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-import com.example.e_management_manager.databinding.ActivityMainBinding;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.e_management_manager.views.fragments.AddTransactionFragment;
+import com.example.e_management_manager.R;
 
 import java.util.Objects;
 

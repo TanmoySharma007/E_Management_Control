@@ -1,4 +1,4 @@
-package com.example.e_management_manager;
+package com.example.e_management_manager.views.fragments;
 
 import android.app.DatePickerDialog;
 import android.os.Build;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 
+import com.example.e_management_manager.R;
 import com.example.e_management_manager.databinding.FragmentAddTransactionBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
