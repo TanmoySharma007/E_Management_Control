@@ -7,7 +7,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,11 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 
 import com.example.e_management_manager.R;
+import com.example.e_management_manager.adapters.AccountsAdapter;
+import com.example.e_management_manager.adapters.CategoryAdapter;
 import com.example.e_management_manager.databinding.FragmentAddTransactionBinding;
 import com.example.e_management_manager.databinding.ListDialogueBinding;
+import com.example.e_management_manager.models.Account;
 import com.example.e_management_manager.models.Category;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -24,14 +28,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the  factory method to
- * create an instance of this fragment.
- */
+
 public class AddTransactionFragment extends BottomSheetDialogFragment {
 
-
+    CategoryAdapter categoryAdapter;
     public AddTransactionFragment() {
         // Required empty public constructor
     }
@@ -60,7 +60,7 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
 
         });
 
-        binding.expenseBtn.setOnClickListener(v -> {
+        binding. expenseBtn.setOnClickListener(v -> {
 
             binding.incomeBtn.setBackground(getContext().getDrawable(R.drawable.default_selector));
             binding.expenseBtn.setBackground(getContext().getDrawable(R.drawable.expense_selector));
@@ -93,17 +93,62 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
                 }
             });
 
-            binding.category.setOnClickListener(v-> {
+            binding.category.setOnClickListener((View v) -> {
                 ListDialogueBinding dialogueBinding = ListDialogueBinding.inflate(inflater);
                 AlertDialog categoryDialog = new AlertDialog.Builder(getContext()).create();
                 categoryDialog .setView(dialogueBinding.getRoot());
 
                 ArrayList <Category> categories = new ArrayList<>();
-                catego
-                
+                categories.add (new Category("Salary",R.drawable.salary, R.color.category1));
+                categories.add (new Category("Business",R.drawable.business, R.color.category2));
+                categories.add (new Category("Investment",R.drawable.investment, R.color.category3));
+                categories.add (new Category("Loan",R.drawable.loan, R.color.category4));
+                categories.add (new Category("Rent",R.drawable.rent, R.color.category5));
+                categories.add (new Category("Others",R.drawable.others, R.color.category6));
 
+               categoryAdapter = new CategoryAdapter(getContext(), categories, new CategoryAdapter.CategoryClickListener() {
+                    @Override
+                    public void onCategoryClicked(Category category) {
+                        binding.category.setText(category.getCategoryName());
+                        categoryDialog.dismiss();
+
+                    }
+
+                });
+
+
+
+                dialogueBinding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+                dialogueBinding.recyclerView.setAdapter(categoryAdapter);
+
+                categoryDialog.show();
 
             });
+                binding.account.setOnClickListener((View c) ->{
+                ListDialogueBinding dialogueBinding = ListDialogueBinding.inflate(inflater);
+                AlertDialog accountsDialog = new AlertDialog.Builder(getContext()).create();
+                accountsDialog .setView(dialogueBinding.getRoot());
+
+                ArrayList<Account>accounts = new ArrayList<>();
+                accounts.add(new Account(0,"Cash"));
+                accounts.add(new Account(0,"Bank"));
+                accounts.add(new Account(0,"Nagad"));
+                accounts.add(new Account(0,"BKash"));
+                accounts.add(new Account(0,"Other"));
+
+                AccountsAdapter adapter = new AccountsAdapter(getContext(), accounts, new AccountsAdapter.AccountsClickListener() {
+                    @Override
+                    public void onAccountSelected(Account account) {
+                       binding.account.setText(account.getAccountName());
+                        accountsDialog.dismiss();
+                    }
+                });
+                    dialogueBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                    dialogueBinding.recyclerView.setAdapter(adapter);
+
+                    accountsDialog.show();
+            });
+
 
 
         return binding.getRoot();

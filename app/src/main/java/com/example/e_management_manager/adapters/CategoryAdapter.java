@@ -19,11 +19,16 @@ import java.util.ArrayList;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
     Context context;
     ArrayList<Category> categories;
+    CategoryClickListener categoryClickListener;
+    public interface CategoryClickListener{
+        void onCategoryClicked (Category category);
+    }
 
-    public CategoryAdapter (Context context,ArrayList<Category>categories){
-        this.context =context;
+
+    public CategoryAdapter (Context context,ArrayList<Category>categories,CategoryClickListener categoryClickListener) {
+        this.context = context;
         this.categories= categories;
-
+        this.categoryClickListener = categoryClickListener;
     }
 
 
@@ -38,6 +43,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         Category category = categories.get(position);
         holder.binding.categoryText.setText(category.getCategoryName());
         holder.binding.categoryIcon.setImageResource(category.getCategoryImage());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                categoryClickListener.onCategoryClicked(category);
+            }
+        });
+        holder.binding.categoryIcon.setBackgroundTintList(context.getColorStateList(category.getCategoryColor())); //color seted here
     }
 
     @Override
