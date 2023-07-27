@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+import com.example.e_management_manager.databinding.ActivityMainBinding;
 import com.example.e_management_manager.views.fragments.AddTransactionFragment;
 import com.example.e_management_manager.R;
 

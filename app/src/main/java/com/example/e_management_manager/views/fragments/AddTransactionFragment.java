@@ -1,5 +1,6 @@
 package com.example.e_management_manager.views.fragments;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,9 +16,12 @@ import android.widget.DatePicker;
 
 import com.example.e_management_manager.R;
 import com.example.e_management_manager.databinding.FragmentAddTransactionBinding;
+import com.example.e_management_manager.databinding.ListDialogueBinding;
+import com.example.e_management_manager.models.Category;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -88,6 +92,19 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
                     datePickerDialog.show();
                 }
             });
+
+            binding.category.setOnClickListener(v-> {
+                ListDialogueBinding dialogueBinding = ListDialogueBinding.inflate(inflater);
+                AlertDialog categoryDialog = new AlertDialog.Builder(getContext()).create();
+                categoryDialog .setView(dialogueBinding.getRoot());
+
+                ArrayList <Category> categories = new ArrayList<>();
+                catego
+                
+
+
+            });
+
 
         return binding.getRoot();
     }
