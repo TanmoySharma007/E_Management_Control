@@ -22,6 +22,8 @@ import com.example.e_management_manager.databinding.FragmentAddTransactionBindin
 import com.example.e_management_manager.databinding.ListDialogueBinding;
 import com.example.e_management_manager.models.Account;
 import com.example.e_management_manager.models.Category;
+import com.example.e_management_manager.utils.Constants;
+import com.example.e_management_manager.utils.Helper;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.text.SimpleDateFormat;
@@ -83,8 +85,8 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
                             calendar.set(Calendar.MONTH, datePicker.getMonth());
                             calendar.set(Calendar.YEAR, datePicker.getYear());
 
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");
-                            String dateToShow = dateFormat.format(calendar.getTime());
+                            //SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");
+                            String dateToShow = Helper.formatDate(calendar.getTime());
 
                             binding.date.setText(dateToShow);
                         }
@@ -98,15 +100,9 @@ public class AddTransactionFragment extends BottomSheetDialogFragment {
                 AlertDialog categoryDialog = new AlertDialog.Builder(getContext()).create();
                 categoryDialog .setView(dialogueBinding.getRoot());
 
-                ArrayList <Category> categories = new ArrayList<>();
-                categories.add (new Category("Salary",R.drawable.salary, R.color.category1));
-                categories.add (new Category("Business",R.drawable.business, R.color.category2));
-                categories.add (new Category("Investment",R.drawable.investment, R.color.category3));
-                categories.add (new Category("Loan",R.drawable.loan, R.color.category4));
-                categories.add (new Category("Rent",R.drawable.rent, R.color.category5));
-                categories.add (new Category("Others",R.drawable.others, R.color.category6));
 
-               categoryAdapter = new CategoryAdapter(getContext(), categories, new CategoryAdapter.CategoryClickListener() {
+
+               categoryAdapter = new CategoryAdapter(getContext(), Constants.categories, new CategoryAdapter.CategoryClickListener() {
                     @Override
                     public void onCategoryClicked(Category category) {
                         binding.category.setText(category.getCategoryName());

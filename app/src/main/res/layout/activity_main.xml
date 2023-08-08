@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
         <ImageView
-            android:id="@+id/previousDate"
+            android:id="@+id/previousDateBtn"
             android:layout_width="20dp"
 
             android:layout_height="22dp"
@@ -49,7 +49,7 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:id="@+id/nextDate"
+            android:id="@+id/nextDateBtn"
             android:layout_width="20dp"
             android:layout_height="22dp"
             app:srcCompat="@drawable/backbtn" />
